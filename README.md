@@ -26,3 +26,5 @@ note: *Just input base on marked object one by one and press esc to exit the tra
 
 ### Check the model
 `python TrainAndTestData.py -d = train_image/train2.png`
+
+![vlcsnap-2020-09-10-10h12m08s321](https://user-images.githubusercontent.com/26915668/93845632-c0b6fd80-fccb-11ea-8275-08d1cc20fff6.png)
