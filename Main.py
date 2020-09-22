@@ -31,42 +31,42 @@ showStep = False
 # Main ##################################################################################################
 outfile = open('result.txt', 'w')
 
-def main():
+def main(imgOriginalScene):
     loop =False
-	# argument for input video/image/calibration
-    ap = argparse.ArgumentParser()
-    ap.add_argument("-v", "--video",
-        help = "path to video file")
+	# # argument for input video/image/calibration
+    # ap = argparse.ArgumentParser()
+    # ap.add_argument("-v", "--video",
+    #     help = "path to video file")
 
-    ap.add_argument("-i", "--image",
-        help = "Path to the image")
+    # ap.add_argument("-i", "--image",
+    #     help = "Path to the image")
 
-    ap.add_argument("-c", "--calibration",
-        help = "image or video or camera")
-    args = vars(ap.parse_args())
+    # ap.add_argument("-c", "--calibration",
+    #     help = "image or video or camera")
+    # args = vars(ap.parse_args())
 
-    if args.get("calibration", True):
-        imgOriginalScene = cv2.imread(args["calibration"])
-        if imgOriginalScene is None:
-            print("Please check again the path of image or argument !")
-        # imgOriginalScene  = imutils.resize(imgOriginalScene, width = 1024)
-        cal.calibration(imgOriginalScene)
-        return
+    # if args.get("calibration", True):
+    #     imgOriginalScene = cv2.imread(args["calibration"])
+    #     if imgOriginalScene is None:
+    #         print("Please check again the path of image or argument !")
+    #     # imgOriginalScene  = imutils.resize(imgOriginalScene, width = 1024)
+    #     cal.calibration(imgOriginalScene)
+    #     return
 
-    if args.get("video", True):
-        camera = cv2.VideoCapture(args["video"])
-        if camera is None:
-            print("Please check again the path of video or argument !")
-        loop = True
+    # if args.get("video", True):
+    #     camera = cv2.VideoCapture(args["video"])
+    #     if camera is None:
+    #         print("Please check again the path of video or argument !")
+    #     loop = True
 
-    elif args.get("image", True):
-        imgOriginalScene = cv2.imread(args["image"])
-        if imgOriginalScene is None:
-            print("Please check again the path of image or argument !")
-            loop = True
-    else:
-        camera = cv2.VideoCapture(0)
-        loop = True
+    # elif args.get("image", True):
+    #     imgOriginalScene = cv2.imread(args["image"])
+    #     if imgOriginalScene is None:
+    #         print("Please check again the path of image or argument !")
+    #         loop = True
+    # else:
+    #     camera = cv2.VideoCapture(0)
+    #     loop = True
 
     # add knn library for detect chars
     blnKNNTrainingSuccessful = DetectChars.loadKNNDataAndTrainKNN()             # attempt KNN training
@@ -158,8 +158,8 @@ def main():
         imgOriginalScene,license = searching(imgOriginalScene,loop)
         #imgOriginalScene = imutils.detransform(imgOriginalScene)
 
-        cv2.waitKey(0)
-    cv2.waitKey(0)
+        cv2.waitKey(1)
+    cv2.waitKey(1)
     cv2.destroyAllWindows()
     return
 # end main
@@ -323,7 +323,7 @@ def searching(imgOriginalScene,loop):
             print("license plate read from image = " + licPlate.strChars + "\n")
 
         if (loop == False):
-            cv2.imshow("imgOriginalScene", imgOriginalScene)                # re-show scene image
+            # cv2.imshow("imgOriginalScene", imgOriginalScene)                # re-show scene image
             cv2.imwrite("imgOriginalScene.png", imgOriginalScene)
 
     return imgOriginalScene, licenses
